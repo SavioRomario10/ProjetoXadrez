@@ -14,4 +14,8 @@ public class Knight extends ChessPiece {
   public String toString() {
     return "C";
   }
+  @Override
+  public boolean[][] possibleMoves() {
+    return null;
+  }
 }
