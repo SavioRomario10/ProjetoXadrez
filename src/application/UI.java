@@ -3,8 +3,6 @@ package application;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-import boardgame.Board;
-
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -59,14 +57,24 @@ public class UI {
   }
 	public static void printMatch(ChessMatch chessMatch, List<ChessPiece> captured) {
 		printBoard(chessMatch.getPieces());
-		
-		if(chessMatch.getCheck()){
-			System.out.println(ANSI_YELLOW +"CHECK!"+ANSI_RESET);
-		}
-		
 		System.out.println();
 		System.out.println("Turn: " + chessMatch.getTurn());
-		System.out.println("Current player: " + chessMatch.getCurrentPlayer());
+		if(chessMatch.getCheckMate()){
+			System.out.println(ANSI_YELLOW +"CHECK MATE"+ANSI_RESET);
+			System.out.println("Winner: "+chessMatch.getCurrentPlayer());
+		}
+		else if(chessMatch.getCheck()){
+			System.out.println(ANSI_YELLOW +"CHECK!"+ANSI_RESET);
+		}
+		else{
+			System.out.print("Current player: ");
+			if(chessMatch.getCurrentPlayer() == Color.WHITE){
+				System.out.println(chessMatch.getCurrentPlayer());
+			}
+			else{
+				System.out.println(ANSI_YELLOW + chessMatch.getCurrentPlayer()+ANSI_RESET);
+			}
+		}
 
 		System.out.println();
 		printCapturedPiece(captured);
