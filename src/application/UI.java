@@ -80,32 +80,30 @@ public class UI {
 		printCapturedPiece(captured);
 	}
   public static void printBoard(ChessPiece[][] pieces) {
-		int color = 0;
     for(int i =0; i < pieces.length; i++) {
-      System.out.print(ANSI_RED +(8 - i) + " "+ANSI_RESET);
+      printCont(i);
       for(int j = 0; j < pieces.length; j++) {
-				initialColorBorder(color++);
         printPiece(pieces[i][j], false);
       }
       System.out.println();
-			color--;
     }
-    System.out.println(ANSI_RED + "  a b c d e f g h" + ANSI_RESET);
+		printBase();
   }
 	public static void printBoard(ChessPiece[][] pieces, boolean[][] possibleMoves) {
     for(int i =0; i < pieces.length; i++) {
-      System.out.print((8 - i) + " ");
+      printCont(i);
       for(int j = 0; j < pieces.length; j++) {
         printPiece(pieces[i][j], possibleMoves[i][j]);
       }
       System.out.println();
     }
-    System.out.println("  a b c d e f g h");
+    printBase();
   }
-	private static void initialColorBorder(int i){
-		if(i%2 == 0){
-			System.out.print(ANSI_BLACK_BACKGROUND);
-		}
+	public static void printBase(){
+    System.out.println(ANSI_RED + "  a b c d e f g h" + ANSI_RESET);
+	}
+	public static void printCont(int i){
+    System.out.print(ANSI_RED +(8 - i) + " "+ANSI_RESET);
 	}
 
   private static void printPiece(ChessPiece piece, boolean background) {
